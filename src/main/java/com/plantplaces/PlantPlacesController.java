@@ -1,9 +1,12 @@
 package com.plantplaces;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.plantplaces.service.SpecimenServiceStub;
 
 /**
  * Handle the /start endpoint
@@ -13,9 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PlantPlacesController {
 	
+	@Autowired 
+	private SpecimenServiceStub specimenServiceStub;
 	
 	@RequestMapping(value="/start", method=RequestMethod.GET)
 	public String read() {
+		
+		specimenServiceStub.fetchById(43);
 		
 		return "start";
 	}
